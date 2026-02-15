@@ -12,7 +12,7 @@ function Header() {
     const isHomePage = pathname === '/';
   return (
     <div className={`p-4 flex justify-between items-center ${
-        isHomePage ? 'bg-blue-50' : 'bg-white border-b border-blue-50'
+        isHomePage ? 'bg-green-50' : 'bg-white border-b border-green-50'
         }`}
     >
         <Link href='/' className='flex items-center'>
