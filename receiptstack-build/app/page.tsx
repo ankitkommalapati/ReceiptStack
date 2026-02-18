@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart, Search, Upload } from "lucide-react";
+import { ArrowRight, BarChart, Check, ReceiptText, Search, Shield, Upload } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -94,8 +94,142 @@ export default function Home() {
               <p className="max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">Choose the plan that works best for your needs.</p>
             </div>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-col-3 gap-8 mt-12 max-w-5xl mx-auto">
+            <div className="flex flex-col p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-800 dark:bg-gray-950">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold">Free</h3>
+                <p className="text-gray-500 dark:text-gray-400">Free tier for all to try</p>
+              </div>
+              <div className="mt-4">
+                <p className="text-4xl font-bold">$0.00</p>
+                <p className="text-gray-500 dark:text-gray-400">per month</p>
+              </div>
+              <ul className="mt-6 space-y-2 flex-1">
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>2 Scans per month</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>Basic Data Extraction</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>7-day History</span>
+                </li>
+              </ul>
+              <div className="mt-6">
+                <Link href="/manage-plan">
+                  <Button className="w-full" variant="outline">Sign Up Free</Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex flex-col p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-800 dark:bg-gray-950">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold">Starter</h3>
+                <p className="text-gray-500 dark:text-gray-400">Very limited access</p>
+              </div>
+              <div className="mt-4">
+                <p className="text-4xl font-bold">$4.99</p>
+                <p className="text-gray-500 dark:text-gray-400">per month</p>
+              </div>
+              <ul className="mt-6 space-y-2 flex-1">
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>50 Scans per month</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>Enhanced Data Extraction</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>30-day History</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>Basic export options</span>
+                </li>
+              </ul>
+              <div className="mt-6">
+                <Link href="/manage-plan">
+                  <Button className="w-full" variant="outline">Choose Plan</Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex flex-col p-6 bg-green-50 border border-green-200 rounded-lg relative dark:border-green-900 dark:bg-green-900/20">
+              <div className="absolute -top-3 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">Popular</div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold">Pro</h3>
+                <p className="text-gray-500 dark:text-gray-400">Pro features for the pro user!</p>
+              </div>
+              <div className="mt-4">
+                <p className="text-4xl font-bold">$9.99</p>
+                <p className="text-gray-500 dark:text-gray-400">per month</p>
+              </div>
+              <ul className="mt-6 space-y-2 flex-1">
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>300 Scans per month</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>Advanced AI Data Extraction</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>AI Summaries</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>Expense categories & tags</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>Advanced export options</span>
+                </li>
+                <li className="flex itens-center">
+                  <Check className="text-green-500 h-5 w-5 mr-2"/>
+                  <span>Unlimited history</span>
+                </li>
+              </ul>
+              <div className="mt-6">
+                <Link href="/manage-plan">
+                  <Button className="w-full bg-green-600 hover:bg-green-700">Get Started</Button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Start Scanning Today</h2>
+              <p className="text-gray-500 md:text-xl dark:text-gray-400">Join to save the time and gain insights from their receipts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-gray-200 dark:border-gray-800">
+        <div className="container px-4 md:px-6 py-8 mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-1">
+              <ReceiptText className="h-6 w-6 text-green-600"/>
+              <span className="text-xl font-semibold">ReceiptStack</span>
+            </div>
+            <div className="mt-4 md:mt-0">
+              <p className="text-sm text-gray-500 dark:text-gray-400">ReceiptStack. Know where your money goes.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
