@@ -7,6 +7,7 @@ import { userAgent } from "next/server";
 import React, { useCallback, useRef, useState } from "react";
 import {useSchematicEntitlement} from "@schematichq/schematic-react";
 
+
 function PDFDropzone(){
     const [isUploading, setIsUploading]=useState(false);
     const [uploadedFiles, setUploadedFiles]=useState<string[]>([]);
@@ -52,6 +53,10 @@ function PDFDropzone(){
                     newUploadedFiles.push(file.name);
                 }
                 setUploadedFiles((prev)=>[...prev, ...newUploadedFiles]);
+                setTimeout(()=>{
+                    setUploadedFiles([]);
+                }, 5000);
+                router.push("/receipts");
             } catch (error) {
                 console.error("Upload failed:", error);
                 alert(
