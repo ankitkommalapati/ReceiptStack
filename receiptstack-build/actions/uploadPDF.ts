@@ -1,6 +1,9 @@
 'use server'
 
+import { api } from "@/convex/_generated/api";
+import convex from "@/lib/convexClient";
 import { currentUser } from "@clerk/nextjs/server"
+import { getFileDownloadUrl } from "./getFileDownloadUrl";
 
 export async function uploadPDF(formData: FormData){
     const user=await currentUser();
@@ -18,6 +21,43 @@ export async function uploadPDF(formData: FormData){
         ){
             return {success: false, error: "Only PDF files are allowed"};
         }
+
+        const uploadUrl=await convex.mutation(api.receipts.generateUploadUrl, {});
+
+        const arrayBuffer=await file.arrayBuffer();
+
+        const uploadResponse=await fetch(uploadUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": file.type,
+            },
+            body: new Uint8Array(arrayBuffer),
+        });
+
+        if (!uploadResponse.ok){
+            throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
+        }
+
+        const {storageId}=await uploadResponse.json();
+
+        const receiptId=await convex.mutation(api.receipts.storeReceipt, {
+            userId: user.id,
+            fileId: storageId,
+            fileName: file.name,
+            size: file.size,
+            mimeType: file.type,
+        });
+
+        const fileUrl=await getFileDownloadUrl(storageId);
+
+        return{
+            success: true,
+            data:{
+                receiptId,
+                fileName: file.name
+            }
+        }
+
     } catch (error) {
         console.error("Server action upload error: ", error);
         return{

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { userAgent } from "next/server";
 import React, { useCallback, useRef, useState } from "react";
 import {useSchematicEntitlement} from "@schematichq/schematic-react";
+import { uploadPDF } from "@/actions/uploadPDF";
 
 
 function PDFDropzone(){
@@ -15,12 +16,12 @@ function PDFDropzone(){
     const fileInputRef=useRef<HTMLInputElement>(null);
     const {user}=useUser();
     const router=useRouter();
-    const {
-        value: isFeatureEnabled,
-        featureUsageExceeded,
-        featureUsage,
-        featureAllocation
-    }=useSchematicEntitlement("scans");
+    // const {
+    //     value: isFeatureEnabled,
+    //     featureUsageExceeded, 
+    //     featureUsage,
+    //     featureAllocation
+    // }=useSchematicEntitlement("scans");
 
     const sensors=useSensors(useSensor(PointerSensor));
 
@@ -91,8 +92,8 @@ function PDFDropzone(){
         }
     }, [user, handleUpload]);
 
-    //const canUpload=isUserSignedIn && isFeatureEnabled;
-    const canUpload=true;
+    const isUserSignedIn=!!user;
+    const canUpload=isUserSignedIn;
 
     return (
         <DndContext sensors={sensors}>
